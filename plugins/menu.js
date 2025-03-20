@@ -1,744 +1,302 @@
-const config = require('../config');
-const { cmd, commands } = require('../command');
-const os = require("os");
-const { runtime } = require('../lib/functions');
-const axios = require('axios');
+/*
+ DONT COPY
+*/
 
+const config = require('../config')
+const {cmd , commands} = require('../command')
+const os = require("os")
+const {runtime} = require('../lib/functions')
 cmd({
     pattern: "menu",
+    alias: ["list"],
     desc: "menu the bot",
-    category: "menu",
-    react: "⚡",
-    filename: __filename
-}, 
+    react: "📜",
+    category: "main"
+},
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let dec = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
-┃★╭──────────────
-┃★│ Owner : *${config.OWNER_NAME}*
-┃★│ Baileys : *Multi Device*
-┃★│ Type : *NodeJs*
-┃★│ Platform : *Heroku*
-┃★│ Mode : *[${config.MODE}]*
-┃★│ Prifix : *[${config.PREFIX}]*
-┃★│ Version : *3.0.0 Bᴇᴛᴀ*
-┃★╰──────────────
-╰━━━━━━━━━━━━━━━┈⊷
-╭━━〔 *Menu List* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• Quranmenu
-┃◈┃• Prayertime
-┃◈┃• Aimenu
-┃◈┃• Anmiemenu
-┃◈┃• Reactions
-┃◈┃• Convertmenu
-┃◈┃• Funmenu
-┃◈┃• Dlmenu
-┃◈┃• Listcmd
-┃◈┃• Mainmenu
-┃◈┃• Groupmenu
-┃◈┃• Allmenu
-┃◈┃• Ownermenu
-┃◈┃• Othermenu
-┃◈┃• Logo <text>
-┃◈┃• Repo
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
+        let desc = `*👋 Hello ${pushname}*
+    
+     *꧁ྀི*𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃*ྀི꧂*
+*❖╭─────────────···▸*
+> *ʀᴜɴᴛɪᴍᴇ* : ${runtime(process.uptime())}
+> *ᴍᴏᴅᴇ* : *ᴘʀɪᴠᴇᴛ*
+> *ᴘʀᴇғɪx* : *.*
+> *ʀᴀᴍ ᴜsᴇ* : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+> *ɴᴀᴍᴇ ʙᴏᴛ* : *𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃*
+> *ᴄʀᴇᴀᴛᴏʀ* : *CYBER RUSH MODZ ( Nipun Harshana )*
+> *ᴠᴇʀsɪᴏɴs* : *ᴠ.0.1*
+*❖╰────────────···▸▸*
+*♡︎•━━━━━━☻︎━━━━━━•♡︎*
+*╭╼╼╼╼╼╼╼╼╼╼*
+*├➤ 1 • ᴏᴡɴᴇʀ ᴍᴇɴᴜ*
+*├➤ 2 • ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ*
+*├➤ 3 • ᴀɪ ᴍᴇɴᴜ*
+*├➤ 4 • ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ*
+*├➤ 5 • ᴅᴀᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ*
+*├➤ 6 • ᴍᴀɪɴ ᴍᴇɴᴜ*
+*├➤ 7 • ɢʀᴏᴜᴘ ᴍᴇɴᴜ*
+*├➤ 8 • ꜰᴜɴ ᴍᴇɴᴜ*
+*├➤ 9 • ᴛᴏᴏʟꜱ ᴍᴇɴᴜ*
+*├➤ 10 • ᴏᴛʜᴇʀ ᴍᴇɴᴜ*
+*╰╼╼╼╼╼╼╼╼╼╼*
+* ▣▣▣▣▣▣▣▣▣▣▣▣*⁠⁠⁠⁠
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/7zfdcq.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
+*ׂ╰┈➤ 🔢Reply with the Number you want to select
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`;
+
+        const vv = await conn.sendMessage(from, { image: { url: "https://i.ibb.co/BsjkCDP/9555.jpg"}, caption: desc }, { quoted: mek });
+
+        conn.ev.on('messages.upsert', async (msgUpdate) => {
+            const msg = msgUpdate.messages[0];
+            if (!msg.message || !msg.message.extendedTextMessage) return;
+
+            const selectedOption = msg.message.extendedTextMessage.text.trim();
+
+            if (msg.message.extendedTextMessage.contextInfo && msg.message.extendedTextMessage.contextInfo.stanzaId === vv.key.id) {
+                switch (selectedOption) {
+                    case '1':
+                        reply(`*꧁◈╾───☉ ᴏᴡɴᴇʀ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *setting*
+> ʙᴏᴛ ꜱᴇᴛᴛɪɴɢ  ᴄʜᴀɴɢᴇ
+│ ➽ *block*
+> ᴜꜱᴇʀ ʙʟᴏᴄᴋ
+│ ➽ *unblock*
+> ʙʟᴏᴄᴋ ᴜꜱᴇʀ  ᴜɴʙʟᴏᴄᴋ
+│ ➽ *shutdown*
+> ʙᴏᴛ ꜱᴛᴏᴘ
+│ ➽ *broadcast*
+> ᴀʟʟ ɢʀᴏᴜᴘ ꜱᴇɴᴅ ᴍꜱɢ
+│ ➽ *setpp*
+> ᴘʀᴏꜰɪʟᴇ ᴘɪᴄ ᴄʜᴀɴɢᴇ
+│ ➽ *clearchats*
+> ᴀʟʟ ᴄʜᴀᴛ ᴄʟᴇᴀʀ 
+│ ➽ *jid*
+> ᴄʜᴀᴛ ᴊɪᴅ 
+│ ➽ *gjid*
+> ɢʀᴏᴜᴘ ᴊɪᴅ
+│ ➽ *update*
+> ʙᴏᴛ ᴜᴘᴅᴀᴛᴇ
+│ ➽ *updatecmd*
+> ᴜᴘᴅᴀᴛᴇ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅ
+│ ➽ *xvdl*
+> 18+ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *movie*
+> ᴍᴏᴠɪᴇ ᴅᴀᴡɴʟᴏᴀᴅ 
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '2':               
+                        repl (`*꧁◈╾───☉ ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *sticker*
+> ᴘʜᴏᴛᴏ ᴄᴏɴᴠᴇʀᴛ ꜱᴛɪᴄᴋᴇʀ
+│ ➽ *trt*
+> ᴛʀᴀɴꜱʟᴀᴛᴇ ᴛᴇxᴛ ʙᴇᴛᴡᴇᴇɴ  ʟᴀɴɢᴜᴀɢᴇꜱ
+│ ➽ *tts*
+> ᴅᴀᴡɴʟᴏᴀᴅ ᴛʏᴘᴇ ᴛᴇxᴛ ᴛᴏ ᴠᴏɪᴄᴇ
+│ ➽ *vv*
+> ᴠɪᴇᴡᴏɴᴄᴇ ᴍᴇꜱꜱᴀɢᴇ ᴀɢɪɴ ᴠɪᴇᴡ
+│ ➽ *fancy*
+> ᴄᴏɴᴠᴇʀᴛ ᴛᴏ ᴛᴇxᴛ ɪɴᴛᴏ ᴠᴀʀɪᴏᴜꜱ ꜰᴏɴᴛ
+│ ➽ *pickupline*
+> ɢᴇᴛ ᴀ ʀᴀɴᴅᴏᴍ ᴘɪᴄᴜᴘ ʟɪɴᴇ ᴛʜᴇ ᴀᴘɪ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '3':               
+                        reply(`*꧁◈╾───☉ ᴀɪ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *ai*
+> ᴄʜᴀᴛ ᴀɪ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '4':               
+                        reply(`*꧁◈╾───☉ ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *movie*
+> ᴍᴏᴠɪᴇ ꜱᴇᴀʀᴄʜ
+│ ➽ *yts*
+> ꜱᴇᴀʀᴄʜ ꜰᴏʀ ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏꜱ ᴜꜱɪɴɢ ᴀ Qᴜᴇʀʏ
+│ ➽ *save*
+> ꜱᴀᴠᴇ ᴀɴᴅ ꜱᴇɴᴅ ʙᴀᴄᴋ ᴀ ᴍᴇᴅɪᴀ ꜰɪʟᴇ ( ɪᴍᴀɢᴇꜱ / ᴠɪᴅᴇᴏ ᴏʀ ᴀᴜᴅɪᴏ )
+│ ➽ *news*
+> ɢᴇᴛ ᴀ ʟᴀꜱᴛᴇꜱᴛ ɴᴇᴡꜱ ʜᴇᴅʟɪɴᴇꜱ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '5':               
+                        reply(`*꧁◈╾───☉ ᴅᴀᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *song*
+> ʏᴏᴜᴛᴜʙᴇ ꜱᴏɴɢ  ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *play3*
+> ʏᴏᴜᴛᴜʙᴇ ꜱᴏɴɢ ᴅᴀᴡɴʟᴏᴀᴅ  
+│ ➽ *play2*
+> ʏᴏᴜᴛᴜʙᴇ ꜱᴏɴɢ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *mp3*
+> ʏᴏᴜᴛᴜʙᴇ ꜱᴏɴɢ ᴅᴀᴡɴʟᴏᴀᴅ 
+│ ➽ *mp4*
+> ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *darama*
+> ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *video*
+> ʏᴏᴜᴛᴜʙᴇ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *apk*
+> ᴘʟᴀʏꜱᴛᴏʀʏ ᴀᴘᴘ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *tiktok*
+> ᴛɪᴋᴛᴏᴋ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *tt*
+> ᴛɪᴋᴛᴏᴋ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *fb*
+> ꜰᴀᴄᴇʙᴏᴏᴄᴋ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *mf*
+> ᴍᴇᴅɪᴀꜰɪʀᴇ ʟɪɴᴋ ᴅᴀᴡɴʟᴏᴀᴅ
+│ ➽ *ig*
+> ɪɴꜱᴛᴀɢʀᴀᴍ ᴠɪᴅᴇᴏ ᴅᴀᴡɴʟᴏᴀᴅ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '6':               
+                        reply(`*꧁◈╾───☉ ᴍᴀɪɴ  ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *wiki*
+> ꜱᴇᴀʀᴄʜ ᴡɪᴋɪᴘᴇᴅɪᴀ ꜰᴏʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ
+│ ➽ *env*
+> ɢᴇᴛ ʙᴏᴛ ꜱᴇᴛᴛɪɴɢ ʟɪꜱᴛ
+│ ➽ *system*
+> ᴄʜᴇᴄᴋ ᴜᴘᴛɪᴍᴇ
+│ ➽ *ping2 / ping*
+> ᴄʜᴇᴄᴋ ʙᴏᴛ ꜱᴘᴇᴇᴅ
+│ ➽ *owner*
+> ɢᴇᴛ ᴏᴡɴᴇʀ ɴᴜᴍʙᴇʀ
+│ ➽ *alive*
+> ʙᴏᴛ ᴏɴʟɪɴᴇ ᴄʜᴇᴄᴋ
+│ ➽ *list*
+> ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅ ᴛᴡᴏ ʟɪꜱᴛ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                        break;
+                    case '7':               
+                        reply(`*꧁◈╾───☉ ɢʀᴏᴜᴘ  ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *closetime*
+> ᴍᴜᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ
+│ ➽ *opentime*
+> ᴜɴᴍᴜᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ
+│ ➽ *kick*
+> ʀᴇᴍᴏᴠᴇ ᴏɴᴇ ᴍᴇᴍʙᴇʀꜱ
+│ ➽ *kickall*
+> ʀᴇᴍᴏᴠᴇ ᴀʟʟ ᴍᴇᴍʙᴇʀꜱ 
+│ ➽ *promote*
+> ꜱᴇᴛ ᴀᴅᴍɪɴɢ
+│ ➽ *demote*
+> ᴜɴꜱᴇᴛ ᴀᴅᴍɪɴɢ
+│ ➽ *add*
+> ᴀᴅᴅ ᴏɴᴇ  ᴍᴇᴍʙᴇʀꜱ
+│ ➽ *delete*
+> ᴅᴇʟᴇᴛᴇ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ
+│ ➽ *setname*
+> ɢʀᴏᴜᴘ ɴᴀᴍᴇ ᴄʜᴀɴɢᴇ
+│ ➽ *tagall*
+> ᴛᴀɢ ᴀʟʟ ᴍᴇᴍʙᴀʀꜱ
+│ ➽ *tagadmin*
+> ᴛᴀɢ ᴀʟʟ  ᴀᴅᴍɪɴɢ
+│ ➽ *invite*
+> ɢʀᴏᴜᴘ ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴛᴇ
+│ ➽ *join*
+> ᴊᴏɪɴ ᴀ ɢʀᴏᴜᴘ ᴜꜱɪɴɢ ᴏɴ ɪɴᴠɪᴛᴇ ʟɪɴᴋ
+│ ➽ *leave*
+> ᴍᴀᴋᴇ ᴛʜᴇ ʙᴏᴛ ʟᴇꜰᴛ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ɢʀᴏᴜᴘ
+│ ➽ *setdesc*
+> ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅᴇꜱᴄᴛʀɪᴘᴛɪᴏɴ
+│ ➽ *setwelcome*
+> ꜱᴇᴛ ᴛʜᴇ ᴡᴇʟᴄᴏᴍᴇ ᴍᴇꜱꜱᴀɢᴇ ꜰᴏʀ ᴛʜᴇ ɢʀᴏᴜᴘ
+│ ➽ *setgoodbye*
+> ꜱᴇᴛ ᴛʜᴇ ɢᴏᴏᴅ ʙʏᴇ  ᴍᴇꜱꜱᴀɢᴇ ꜰᴏʀ ᴛʜᴇ ɢʀᴏᴜᴘ
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+                       break;
+                    case '8':               
+                        reply(`*꧁◈╾───☉ ꜰᴜɴ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *ship*
+│ ➽ *dare*
+│ ➽ *character*
+│ ➽ *fact*
+│ ➽ *insult*
+│ ➽ *truth*
+│ ➽ *pickupline*
+│ ➽ *joke*
+│ ➽ *dog*
+│ ➽ *hack*
+│ ➽ *animegirl*
+│ ➽ *animegirl1*
+│ ➽ *animegirl2*
+│ ➽ *animegirl3*
+│ ➽ *animegirl4*
+│ ➽ *animegirl5*
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+
+                        break;
+                    case '10':               
+                        reply(`*꧁◈╾───☉ ᴏᴛʜᴇʀ ᴍᴇɴᴜ ☉───╼◈꧂*
+
+╭────────●●►
+│ ➽ *anime*
+│ ➽ *anime1*
+│ ➽ *anime2*
+│ ➽ *anime3*
+│ ➽ *anime4*
+│ ➽ *anime5*
+│ ➽ *githubstalk*
+│ ➽ *weather*
+│ ➽ *fancy*
+╰────────────────────●●►
+
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`);
+
+
+                        break;
+                    default:
+                        reply("Invalid option. Please select a valid option🔴");
                 }
-            },
-            { quoted: mek }
-        );
 
-        // Send audio
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/XdTechPro/KHAN-DATA/raw/refs/heads/main/autovoice/menunew.m4a' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
-        
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-cmd({
-    pattern: "reactions",
-    desc: "Shows the reaction commands",
-    category: "menu",
-    react: "💫",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, reply }) => {
-    try {
-        let dec = `╭━━〔 *Reactions Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• bully @tag
-┃◈┃• cuddle @tag
-┃◈┃• cry @tag
-┃◈┃• hug @tag
-┃◈┃• awoo @tag
-┃◈┃• kiss @tag
-┃◈┃• lick @tag
-┃◈┃• pat @tag
-┃◈┃• smug @tag
-┃◈┃• bonk @tag
-┃◈┃• yeet @tag
-┃◈┃• blush @tag
-┃◈┃• smile @tag
-┃◈┃• wave @tag
-┃◈┃• highfive @tag
-┃◈┃• handhold @tag
-┃◈┃• nom @tag
-┃◈┃• bite @tag
-┃◈┃• glomp @tag
-┃◈┃• slap @tag
-┃◈┃• kill @tag
-┃◈┃• happy @tag
-┃◈┃• wink @tag
-┃◈┃• poke @tag
-┃◈┃• dance @tag
-┃◈┃• cringe @tag
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/7zfdcq.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 144
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// dlmenu
-
-cmd({
-    pattern: "dlmenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "⤵️",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Download Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• facebook
-┃◈┃• mediafire
-┃◈┃• tiktok
-┃◈┃• twitter
-┃◈┃• Insta
-┃◈┃• apk
-┃◈┃• img
-┃◈┃• tt2
-┃◈┃• pins
-┃◈┃• apk2
-┃◈┃• fb2
-┃◈┃• pinterest 
-┃◈┃• spotify
-┃◈┃• play
-┃◈┃• play2
-┃◈┃• play3
-┃◈┃• play4
-┃◈┃• play5
-┃◈┃• play6
-┃◈┃• play7
-┃◈┃• play8
-┃◈┃• play9
-┃◈┃• play10
-┃◈┃• audio
-┃◈┃• video
-┃◈┃• video2
-┃◈┃• video3
-┃◈┃• video4
-┃◈┃• video5
-┃◈┃• video6
-┃◈┃• video7
-┃◈┃• video8
-┃◈┃• video9
-┃◈┃• video10
-┃◈┃• ytmp3
-┃◈┃• ytmp4
-┃◈┃• song
-┃◈┃• darama
-┃◈┃• gdrive
-┃◈┃• ssweb
-┃◈┃• tiks
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/qj853s.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// group menu
-
-cmd({
-    pattern: "groupmenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "⤵️",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try
-       {
-        let dec = `╭━━〔 *Group Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• grouplink
-┃◈┃• kickall
-┃◈┃• kickall2
-┃◈┃• kickall3
-┃◈┃• add
-┃◈┃• remove
-┃◈┃• kick
-┃◈┃• promote 
-┃◈┃• demote
-┃◈┃• dismiss 
-┃◈┃• revoke
-┃◈┃• setgoodbye
-┃◈┃• setwelcome
-┃◈┃• delete 
-┃◈┃• getpic
-┃◈┃• ginfo
-┃◈┃• delete 
-┃◈┃• disappear on
-┃◈┃• disappear off
-┃◈┃• disappear 7D,24H
-┃◈┃• allreq
-┃◈┃• updategname
-┃◈┃• updategdesc
-┃◈┃• joinrequests
-┃◈┃• senddm
-┃◈┃• nikal
-┃◈┃• mute
-┃◈┃• unmute
-┃◈┃• lockgc
-┃◈┃• unlockgc
-┃◈┃• invite
-┃◈┃• tag
-┃◈┃• hidetag
-┃◈┃• tagall
-┃◈┃• tagadmins
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/pw7ap2.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
+            }
+        });
 
     } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// fun menu
-
-cmd({
-    pattern: "funmenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "😎",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-
-        let dec = `╭━━〔 *Fun Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• shapar
-┃◈┃• rate
-┃◈┃• insult
-┃◈┃• hack
-┃◈┃• ship
-┃◈┃• character
-┃◈┃• pickup 
-┃◈┃• joke
-┃◈┃• hrt
-┃◈┃• hpy
-┃◈┃• syd
-┃◈┃• anger
-┃◈┃• shy
-┃◈┃• kiss
-┃◈┃• mon
-┃◈┃• cunfuzed
-┃◈┃• setpp
-┃◈┃• hand
-┃◈┃• nikal
-┃◈┃• hold
-┃◈┃• hug
-┃◈┃• nikal
-┃◈┃• hifi
-┃◈┃• poke
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/l7evmf.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// other menu
-
-cmd({
-    pattern: "othermenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🤖",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Other Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• timenow
-┃◈┃• date
-┃◈┃• count
-┃◈┃• calculate
-┃◈┃• countx
-┃◈┃• flip
-┃◈┃• coinflip
-┃◈┃• rcolor
-┃◈┃• roll
-┃◈┃• fact
-┃◈┃• cpp
-┃◈┃• rw
-┃◈┃• pair
-┃◈┃• pair2
-┃◈┃• pair3
-┃◈┃• fancy
-┃◈┃• logo <text>
-┃◈┃• define
-┃◈┃• news
-┃◈┃• movie
-┃◈┃• weather
-┃◈┃• srepo
-┃◈┃• insult
-┃◈┃• save
-┃◈┃• wikipedia
-┃◈┃• gpass
-┃◈┃• githubstalk
-┃◈┃• yts
-┃◈┃• ytv
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/1re1b8.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// main menu
-
-cmd({
-    pattern: "mainmenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🗿",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Main Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• ping
-┃◈┃• live 
-┃◈┃• alive
-┃◈┃• runtime
-┃◈┃• uptime 
-┃◈┃• repo
-┃◈┃• owner
-┃◈┃• menu
-┃◈┃• menu2
-┃◈┃• restart
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/ebaiwa.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// owner menu
-
-cmd({
-    pattern: "ownermenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🔰",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Owner Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• owner
-┃◈┃• menu
-┃◈┃• menu2
-┃◈┃• listcmd
-┃◈┃• allmenu
-┃◈┃• repo
-┃◈┃• block
-┃◈┃• unblock
-┃◈┃• fullpp
-┃◈┃• setpp
-┃◈┃• restart
-┃◈┃• shutdown
-┃◈┃• updatecmd
-┃◈┃• alive
-┃◈┃• ping 
-┃◈┃• gjid
-┃◈┃• jid
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/pv2zy7.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-// convert menu
-
-cmd({
-    pattern: "convertmenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🥀",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Convert Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• sticker
-┃◈┃• sticker2
-┃◈┃• emojimix
-┃◈┃• fancy
-┃◈┃• take
-┃◈┃• tomp3
-┃◈┃• tts
-┃◈┃• trt
-┃◈┃• base64
-┃◈┃• unbase64
-┃◈┃• binary
-┃◈┃• dbinary
-┃◈┃• tinyurl
-┃◈┃• urldecode
-┃◈┃• urlencode
-┃◈┃• url
-┃◈┃• repeat 
-┃◈┃• ask
-┃◈┃• readmore
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/slc08b.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-
-// anmie menu 
-
-cmd({
-    pattern: "animemenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🧚",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-          let dec = `╭━━〔 *Anime Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• fack
-┃◈┃• dog
-┃◈┃• awoo
-┃◈┃• garl
-┃◈┃• waifu
-┃◈┃• neko
-┃◈┃• megnumin
-┃◈┃• neko
-┃◈┃• maid
-┃◈┃• loli
-┃◈┃• animegirl
-┃◈┃• animegirl
-┃◈┃• animegirl1
-┃◈┃• animegirl2
-┃◈┃• animegirl3
-┃◈┃• animegirl4
-┃◈┃• animegirl5
-┃◈┃• anime1
-┃◈┃• anime1
-┃◈┃• anime2
-┃◈┃• anime3
-┃◈┃• anime4
-┃◈┃• anime5
-┃◈┃• animenews
-┃◈┃• foxgirl
-┃◈┃• naruto
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/ezhijd.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
-
-
-// ai menu 
-
-cmd({
-    pattern: "aimenu",
-    desc: "menu the bot",
-    category: "menu",
-    react: "🤖",
-    filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Ai Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• ai
-┃◈┃• gpt3
-┃◈┃• gpt2
-┃◈┃• gptmini
-┃◈┃• gpt
-┃◈┃• meta
-┃◈┃• blackbox
-┃◈┃• luma
-┃◈┃• dj 
-┃◈┃• khan
-┃◈┃• jawad
-┃◈┃• gpt4
-┃◈┃• bing
-┃◈┃• imagine 
-┃◈┃• imagine2
-┃◈┃• copilot
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
-
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/90oj1t.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
-        );
-
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
+        console.error(e);
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
+        reply('An error occurred while processing your request.');
     }
 });
