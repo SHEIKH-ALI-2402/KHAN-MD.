@@ -1,30 +1,3 @@
-    // Send message with an image 
-    await conn.sendMessage( 
-      from, 
-      { 
-        image: { 
-          url: 'https://i.ibb.co/YdSKMhv/6767.jpg' 
-        }, 
-        caption: envSettings, 
-        contextInfo: { 
-          mentionedJid: [m.sender], 
-          forwardingScore: 999, 
-          isForwarded: true 
-        } 
-      }, 
-      { quoted: mek } 
-    ); 
-  } catch (error) { 
-    console.log(error); 
-    reply(`Error: ${error.message}`); 
-  } 
-});
-
-
-/*
- DONT COPY
-*/
-
 const config = require('../config')
 const {cmd , commands} = require('../command')
 const os = require("os")
